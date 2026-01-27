@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    <title>All Projects - Fahim Munir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #111632;
+            --bg-card: #1a1f3a;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --success: #10b981;
+            --glow: rgba(99, 102, 241, 0.3);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-button:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Main Content */
+        main {
+            padding: 8rem 0 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.375rem 0.875rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* Back to Home Button */
+        .back-to-home {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            box-shadow: 0 4px 20px var(--glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 6rem 0 2rem;
+            }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" style="text-decoration: none;">
+                <div class="logo">Fahim Munir</div>
+            </a>
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <h1>All Projects</h1>
+                <p>A comprehensive showcase of my data engineering and analytics work</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3>Food Price & Security Forecasting</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        End-to-end machine learning pipeline forecasting food price changes and food security index 
+                        in Malaysia using LSTM, Random Forest, SVR, XGBoost, and LightGBM. Integrated multi-source 
+                        datasets including monthly food prices, aggregated daily climate data (temperature and rainfall), 
+                        and food production statistics. Features interactive Streamlit application with real-time 
+                        prediction visualization, manual input support, CSV uploads, and prediction storage capabilities.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">Random Forest</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">LightGBM</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Snowflake</span>
+                        <span class="tech-tag">pandas</span>
+                        <span class="tech-tag">scikit-learn</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3>Malaysian Affordability Gap Analysis</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        Comprehensive data science project analyzing income versus household spending across Malaysian 
+                        states to quantify affordability gaps and financial pressure. Identified states with high 
+                        expenditure-to-income ratios, low disposable income, and elevated financial stress levels. 
+                        Categorized regions based on affordability risk to highlight economic disparities and cost-of-living 
+                        differences. Designed professional statistical visualizations with clear color coding and annotations 
+                        for effective insight communication. Translated economic data into actionable insights relevant to 
+                        policy evaluation, regional planning, and business decision-making.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">pandas</span>
+                        <span class="tech-tag">matplotlib</span>
+                        <span class="tech-tag">seaborn</span>
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Statistical Visualization</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3>DBT Transformation Models - ResMed</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        Built production-grade DBT transformation models converting Oracle ERP datasets into Snowflake 
+                        tables at ResMed during Analytics Engineering Internship. Standardized logic using Jinja templates 
+                        to improve SQL reusability and maintainability across finance, supply chain, and marketing analytics. 
+                        Participated in Agile sprints with Git-based workflows and deployment cycles. Explored Dagster-based 
+                        cloud orchestration for pipeline automation. Supported cross-functional analytics teams with clean, 
+                        well-documented data transformations.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">DBT</span>
+                        <span class="tech-tag">Snowflake</span>
+                        <span class="tech-tag">Jinja</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Oracle</span>
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">Dagster</span>
+                        <span class="tech-tag">Agile</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div>
+                            <h3>Banking ETL Pipelines - InsiteMY</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        Developed robust ETL pipelines using SSIS and SQL Server for major banking clients including BIMB 
+                        and AmBank at InsiteMY Innovations. Delivered critical reporting systems including DQF (Data Quality 
+                        Framework), STATSMART, and ISS (Information Security System). Translated complex business logic into 
+                        efficient SQL queries and Java modules. Contributed to regulatory reporting requirements for Bank 
+                        Negara Malaysia, ensuring compliance and data accuracy. Worked with large-scale financial datasets 
+                        requiring high reliability and performance.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">SSIS</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">ETL</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Banking</span>
+                        <span class="tech-tag">Regulatory Reporting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn btn-primary">← Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Scroll progress
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+    </script>
+</body>
+</html>
