@@ -574,10 +574,10 @@
                 <div class="logo">Wan Fahim</div>
             </a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">Contact Me</a></li>
                 <li><a href="https://github.com/ravager1204" target="_blank">GitHub ↗</a></li>
             </ul>
         </nav>
@@ -712,6 +712,120 @@
         </div>
     </section>
 
+    <!-- Featured Projects -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <p>Production-grade data pipelines and analytics infrastructure</p>
+            </div>
+
+            <div class="featured-projects">
+                <!-- Project 1: Sekolah Mana -->
+                <div class="project-card">
+                    <span class="project-label">Primary Feature</span>
+                    <h3>Sekolah Mana? – Malaysian School Performance Data Pipeline</h3>
+                    <p class="project-problem">
+                        <strong>Problem:</strong> Malaysian parents and policymakers lack accessible, standardized data 
+                        to compare school performance across states and regions. Raw government datasets are fragmented, 
+                        inconsistent, and difficult to analyze at scale.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Architecture & Pipeline Flow</h4>
+                        <ul>
+                            <li><strong>Bronze Layer:</strong> Raw data ingestion from Malaysian government APIs and CSV datasets</li>
+                            <li><strong>Silver Layer:</strong> Data cleaning, standardization, and schema validation</li>
+                            <li><strong>Gold Layer:</strong> Analytics-ready dimensional models for BI consumption</li>
+                            <li><strong>Orchestration:</strong> Apache Airflow DAGs scheduling daily incremental loads</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">10,000+</div>
+                            <div class="metric-label">Schools Processed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5M+</div>
+                            <div class="metric-label">Student Records</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.8%</div>
+                            <div class="metric-label">Data Quality Score</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Apache Airflow</span>
+                        <span class="tech-tag">dbt</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS S3</span>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="https://github.com/ravager1204" target="_blank" class="btn btn-primary">View on GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Weather & Flight Pipeline -->
+                <div class="project-card">
+                    <span class="project-label">Secondary Feature</span>
+                    <h3>Weather & Flight Data Engineering Pipeline</h3>
+                    <p class="project-problem">
+                        <strong>Problem:</strong> Analyzing flight delays and cancellations requires integrating 
+                        real-time weather data with historical flight records. Manual data collection is slow and 
+                        error-prone, preventing timely operational insights.
+                    </p>
+
+                    <div class="project-highlights">
+                        <h4>Architecture & Pipeline Flow</h4>
+                        <ul>
+                            <li><strong>Ingestion:</strong> API polling for real-time weather and flight status data</li>
+                            <li><strong>Processing:</strong> Apache Spark for distributed data transformation and enrichment</li>
+                            <li><strong>Storage:</strong> Partitioned Parquet files in AWS S3 for optimized query performance</li>
+                            <li><strong>Analytics:</strong> dbt models creating aggregated metrics for BI dashboards</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <div class="metric-value">500K+</div>
+                            <div class="metric-label">Flight Records/Month</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">2.5M+</div>
+                            <div class="metric-label">Weather Data Points</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3x</div>
+                            <div class="metric-label">Query Performance Gain</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Apache Airflow</span>
+                        <span class="tech-tag">Apache Spark</span>
+                        <span class="tech-tag">dbt</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="https://github.com/ravager1204" target="_blank" class="btn btn-primary">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="projects.html" class="btn btn-secondary">View All Projects →</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section id="contact">
         <div class="container">
@@ -770,4 +884,5 @@
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+
 
