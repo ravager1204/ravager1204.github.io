@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
-    <title>Fahim Munir - Data Engineer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+    <title>Fahim Munir - Data Engineer Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -23,8 +23,7 @@
             --text-muted: #64748b;
             --border: #1e293b;
             --success: #10b981;
-            --warning: #f59e0b;
-            --info: #3b82f6;
+            --glow: rgba(99, 102, 241, 0.3);
         }
 
         body {
@@ -32,6 +31,7 @@
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         html {
@@ -43,7 +43,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(10, 14, 39, 0.8);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
@@ -51,7 +51,7 @@
         }
 
         nav {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -85,63 +85,74 @@
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
             color: var(--text-primary);
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
         /* Container */
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Hero */
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            min-height: auto;
+        }
+
+        section:first-of-type {
+            padding-top: 10rem;
+        }
+
+        /* Hero Section */
         .hero {
-            padding: 10rem 0 6rem;
             text-align: center;
+            padding: 8rem 0 6rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .hero .title {
-            font-size: 1.75rem;
-            color: var(--accent-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero .subtitle {
-            font-size: 1.125rem;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 2rem;
-            line-height: 1.7;
-        }
-
-        .tech-highlights {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .tech-badge {
-            padding: 0.5rem 1.25rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
+            line-height: 1.8;
         }
 
         .cta-buttons {
@@ -160,17 +171,17 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
+            box-shadow: 0 4px 20px var(--glow);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 8px 30px var(--glow);
         }
 
         .btn-secondary {
@@ -181,34 +192,32 @@
 
         .btn-secondary:hover {
             border-color: var(--accent-primary);
+            background: var(--bg-secondary);
         }
 
-        /* Sections */
-        section {
-            padding: 5rem 0;
-        }
-
+        /* Section Headers */
         .section-header {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 3rem;
         }
 
         .section-header h2 {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
 
         .section-header p {
             color: var(--text-secondary);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
 
         /* Featured Projects */
-        .featured-projects {
+        .projects-grid {
             display: grid;
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
@@ -216,109 +225,67 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2.5rem;
+            padding: 2rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
 
         .project-card:hover {
             border-color: var(--accent-primary);
-            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
         }
 
-        .project-label {
-            display: inline-block;
-            padding: 0.25rem 0.875rem;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 20px;
-            color: var(--accent-primary);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
             margin-bottom: 1rem;
         }
 
         .project-card h3 {
-            font-size: 1.75rem;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .project-problem {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-highlights {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-highlights h4 {
-            color: var(--text-primary);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .project-highlights ul {
-            list-style: none;
-            display: grid;
-            gap: 0.5rem;
-        }
-
-        .project-highlights li {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .project-highlights li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent-primary);
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .metric {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .metric-value {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-primary);
-            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
         }
 
-        .metric-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
@@ -328,18 +295,22 @@
             border-radius: 6px;
             font-size: 0.85rem;
             color: var(--text-secondary);
+            transition: all 0.3s ease;
         }
 
-        .project-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+        .tech-tag:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
 
-        /* About */
-        .about-grid {
+        .view-all-projects {
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 300px 1fr;
             gap: 3rem;
             align-items: start;
         }
@@ -354,47 +325,50 @@
             justify-content: center;
             color: var(--text-muted);
             border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
-        .about-content p {
+        .about-image:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 30px var(--glow);
+        }
+
+        .about-text p {
             color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            line-height: 1.7;
-            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
         }
 
-        .expertise-grid {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
             margin-top: 2rem;
         }
 
-        .expertise-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.25rem;
-        }
-
-        .expertise-card h4 {
+        .skill-category h4 {
             color: var(--text-primary);
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 0.75rem;
             font-weight: 600;
         }
 
-        .expertise-card ul {
+        .skill-category ul {
             list-style: none;
         }
 
-        .expertise-card li {
+        .skill-category li {
             color: var(--text-secondary);
             font-size: 0.9rem;
             padding: 0.25rem 0;
+            transition: color 0.3s ease;
         }
 
-        /* Experience */
+        .skill-category li:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Experience Section */
         .timeline {
             position: relative;
             padding-left: 2rem;
@@ -412,7 +386,7 @@
 
         .timeline-item {
             position: relative;
-            padding-bottom: 2.5rem;
+            padding-bottom: 3rem;
         }
 
         .timeline-item::before {
@@ -430,7 +404,7 @@
 
         .timeline-item h3 {
             color: var(--text-primary);
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
@@ -445,7 +419,7 @@
             line-height: 1.7;
         }
 
-        /* Contact */
+        /* Contact Section */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
@@ -455,7 +429,7 @@
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
 
         .contact-item {
@@ -466,12 +440,17 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(4px);
         }
 
         .contact-item strong {
             color: var(--text-primary);
             min-width: 80px;
-            font-size: 0.9rem;
         }
 
         .contact-item a {
@@ -493,13 +472,14 @@
             border-radius: 8px;
             color: var(--text-primary);
             font-family: inherit;
-            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
             border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px var(--glow);
         }
 
         .contact-form textarea {
@@ -507,66 +487,63 @@
             resize: vertical;
         }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-            text-align: center;
+        .contact-form button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-primary);
-        }
-
-        footer p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--glow);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            .hero .title {
-                font-size: 1.35rem;
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.85rem;
-            }
-
-            .about-grid,
+            .about-content,
             .contact-grid {
                 grid-template-columns: 1fr;
             }
 
-            .expertise-grid {
-                grid-template-columns: 1fr;
+            .nav-links {
+                gap: 0.75rem;
+                font-size: 0.85rem;
             }
 
-            .metrics {
-                grid-template-columns: 1fr;
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            z-index: 9999;
+            transition: width 0.1s ease;
         }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Header -->
     <header>
         <nav>
@@ -574,101 +551,85 @@
                 <div class="logo">Fahim Munir</div>
             </a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#projects">Featured Projects</a></li>
+                <li><a href="#contact">Contact Me</a></li>
                 <li><a href="https://github.com/ravager1204" target="_blank">GitHub ↗</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
             <h1>Wan Ahmad Fahim Munir</h1>
-            <p class="title">Data Engineer / Analytics Engineer</p>
-            <p class="subtitle">
-                Building reliable data pipelines and analytics-ready datasets. 
-                Experienced in end-to-end data orchestration, transformation modeling, and cloud infrastructure.
+            <p class="subtitle">Data Engineer & Analytics Specialist</p>
+            <p>
+                Building scalable ETL/ELT pipelines and cloud data solutions. 
+                Specialized in DBT, Snowflake, SQL, and Python with hands-on experience 
+                deploying analytical workflows in healthcare and FinTech environments.
             </p>
-            <div class="tech-highlights">
-                <span class="tech-badge">Apache Airflow</span>
-                <span class="tech-badge">dbt</span>
-                <span class="tech-badge">SQL</span>
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Docker</span>
-                <span class="tech-badge">AWS</span>
-            </div>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Featured Work</a>
+                <a href="#about" class="btn btn-primary">Learn More About Me</a>
                 <a href="Fahim_Munir_Zaki_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
             </div>
         </div>
     </section>
 
-    <!-- About -->
+    <!-- About Me -->
     <section id="about">
         <div class="container">
             <div class="section-header">
                 <h2>About Me</h2>
-                <p>Building end-to-end data infrastructure</p>
+                <p>Building data systems that drive decisions</p>
             </div>
 
-            <div class="about-grid">
+            <div class="about-content">
                 <div class="about-image">Your Photo</div>
-                <div class="about-content">
+                <div class="about-text">
                     <p>
-                        I'm a Data Engineer focused on building reliable, scalable data pipelines that transform raw data 
-                        into analytics-ready datasets. My work spans the full data engineering lifecycle: from ingestion 
-                        and orchestration to transformation modeling and serving data for business intelligence.
+                        Hello! I'm a Data Engineer passionate about building scalable data systems and extracting 
+                        meaningful insights from complex datasets. With experience in both healthcare and FinTech 
+                        environments, I specialize in creating efficient ETL/ELT pipelines and analytics solutions.
                     </p>
                     <p>
-                        I specialize in modern data stack technologies including Apache Airflow for orchestration, dbt for 
-                        transformation modeling, and cloud platforms like AWS for storage and compute. My experience includes 
-                        building production pipelines processing millions of records daily with strong data quality guarantees.
-                    </p>
-                    <p>
-                        Beyond infrastructure, I understand the analytics layer—working with business stakeholders to translate 
-                        requirements into dimensional models, metrics, and dashboards. I'm equally comfortable writing SQL 
-                        transformations, Python ETL scripts, or deploying containerized workflows with Docker.
+                        I have hands-on experience with modern data stack technologies including DBT, Snowflake, 
+                        and cloud platforms like AWS. My work spans from building transformation models and data 
+                        pipelines to developing machine learning solutions for real-world problems.
                     </p>
 
-                    <div class="expertise-grid">
-                        <div class="expertise-card">
+                    <div class="skills-grid">
+                        <div class="skill-category">
                             <h4>Data Engineering</h4>
                             <ul>
-                                <li>Pipeline Orchestration (Airflow)</li>
-                                <li>Data Modeling (dbt, Kimball)</li>
-                                <li>ETL/ELT Design & Optimization</li>
-                                <li>Data Quality & Testing</li>
+                                <li>DBT & Snowflake</li>
+                                <li>ETL/ELT Pipelines</li>
+                                <li>SSIS & SQL</li>
                             </ul>
                         </div>
-                        <div class="expertise-card">
-                            <h4>Cloud & Infrastructure</h4>
+                        <div class="skill-category">
+                            <h4>Cloud & Tools</h4>
                             <ul>
-                                <li>AWS (S3, Glue, Redshift, EC2)</li>
-                                <li>Docker & Containerization</li>
-                                <li>PostgreSQL, Snowflake, SQL Server</li>
-                                <li>CI/CD & Git Workflows</li>
+                                <li>AWS (S3, Glue, Redshift)</li>
+                                <li>Tableau & Power BI</li>
+                                <li>Git & Agile</li>
                             </ul>
                         </div>
-                        <div class="expertise-card">
-                            <h4>Programming & Tools</h4>
+                        <div class="skill-category">
+                            <h4>Programming</h4>
                             <ul>
-                                <li>Python (pandas, PySpark)</li>
-                                <li>SQL (Advanced queries & optimization)</li>
-                                <li>Apache Spark for distributed processing</li>
-                                <li>REST API integration</li>
+                                <li>Python & SQL</li>
+                                <li>R & Java</li>
+                                <li>pandas & scikit-learn</li>
                             </ul>
                         </div>
-                        <div class="expertise-card">
-                            <h4>Analytics & BI</h4>
+                        <div class="skill-category">
+                            <h4>Machine Learning</h4>
                             <ul>
-                                <li>Dimensional Modeling (Star/Snowflake)</li>
-                                <li>Business Metrics Design</li>
-                                <li>Tableau, Power BI</li>
-                                <li>Machine Learning Pipelines</li>
+                                <li>LSTM & XGBoost</li>
+                                <li>Random Forest & SVR</li>
+                                <li>LightGBM</li>
                             </ul>
                         </div>
                     </div>
@@ -682,7 +643,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Experience</h2>
-                <p>Building production data systems in healthcare and fintech</p>
+                <p>My professional journey</p>
             </div>
 
             <div class="timeline">
@@ -690,11 +651,11 @@
                     <h3>Analytics Engineering Intern</h3>
                     <div class="date">ResMed, Kuala Lumpur | May 2024 – Aug 2024</div>
                     <p>
-                        Built production-grade dbt transformation models converting Oracle ERP datasets into Snowflake analytics tables. 
-                        Standardized SQL logic using Jinja templates, improving reusability and maintainability across finance, supply chain, 
-                        and marketing analytics. Participated in Agile sprints with Git-based version control and CI/CD deployment cycles. 
-                        Explored Dagster-based orchestration for pipeline automation. Supported cross-functional analytics teams with clean, 
-                        well-documented dimensional models.
+                        Built DBT transformation models converting Oracle ERP datasets into Snowflake tables. 
+                        Standardized logic using Jinja templates to improve SQL reusability. Participated in 
+                        Agile sprints, Git-based workflows, and deployment cycles. Explored Dagster-based cloud 
+                        orchestration for pipeline automation. Supported analytics for finance, supply chain, 
+                        and marketing teams.
                     </p>
                 </div>
 
@@ -702,10 +663,9 @@
                     <h3>Analyst Programmer</h3>
                     <div class="date">InsiteMY Innovations, Kuala Lumpur | 2021 – 2022</div>
                     <p>
-                        Developed ETL pipelines using SSIS and SQL Server for major banking clients (BIMB, AmBank). Delivered critical 
-                        reporting systems including Data Quality Framework (DQF), STATSMART, and Information Security System (ISS). 
-                        Translated complex business requirements into efficient SQL queries and Java modules. Contributed to regulatory 
-                        reporting for Bank Negara Malaysia, ensuring compliance and data accuracy in high-stakes financial environments.
+                        Developed ETL pipelines via SSIS and SQL Server for banking clients (BIMB, AmBank). 
+                        Delivered reporting systems including DQF, STATSMART, and ISS. Translated business logic 
+                        into SQL and Java modules. Contributed to regulatory reporting for Bank Negara Malaysia.
                     </p>
                 </div>
             </div>
@@ -717,112 +677,54 @@
         <div class="container">
             <div class="section-header">
                 <h2>Featured Projects</h2>
-                <p>Production-grade data pipelines and analytics infrastructure</p>
+                <p>Highlights from my recent work</p>
             </div>
 
-            <div class="featured-projects">
-                <!-- Project 1: Sekolah Mana -->
+            <div class="projects-grid">
                 <div class="project-card">
-                    <span class="project-label">Primary Feature</span>
-                    <h3>Sekolah Mana? – Malaysian School Performance Data Pipeline</h3>
-                    <p class="project-problem">
-                        <strong>Problem:</strong> Malaysian parents and policymakers lack accessible, standardized data 
-                        to compare school performance across states and regions. Raw government datasets are fragmented, 
-                        inconsistent, and difficult to analyze at scale.
+                    <div class="project-header">
+                        <div>
+                            <h3>Food Price & Security Forecasting</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        End-to-end ML pipeline forecasting food price changes and food security index in Malaysia 
+                        using LSTM, Random Forest, SVR, XGBoost, and LightGBM. Features interactive Streamlit 
+                        application with real-time prediction visualization and CSV upload capabilities.
                     </p>
-
-                    <div class="project-highlights">
-                        <h4>Architecture & Pipeline Flow</h4>
-                        <ul>
-                            <li><strong>Bronze Layer:</strong> Raw data ingestion from Malaysian government APIs and CSV datasets</li>
-                            <li><strong>Silver Layer:</strong> Data cleaning, standardization, and schema validation</li>
-                            <li><strong>Gold Layer:</strong> Analytics-ready dimensional models for BI consumption</li>
-                            <li><strong>Orchestration:</strong> Apache Airflow DAGs scheduling daily incremental loads</li>
-                        </ul>
-                    </div>
-
-                    <div class="metrics">
-                        <div class="metric">
-                            <div class="metric-value">10,000+</div>
-                            <div class="metric-label">Schools Processed</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">5M+</div>
-                            <div class="metric-label">Student Records</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">99.8%</div>
-                            <div class="metric-label">Data Quality Score</div>
-                        </div>
-                    </div>
-
                     <div class="tech-stack">
-                        <span class="tech-tag">Apache Airflow</span>
-                        <span class="tech-tag">dbt</span>
-                        <span class="tech-tag">PostgreSQL</span>
                         <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">AWS S3</span>
-                    </div>
-
-                    <div class="project-actions">
-                        <a href="https://github.com/ravager1204" target="_blank" class="btn btn-primary">View on GitHub</a>
-                        <a href="sekolah-mana-project.html" class="btn btn-secondary">Read Technical Details</a>
+                        <span class="tech-tag">LSTM</span>
+                        <span class="tech-tag">XGBoost</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Snowflake</span>
                     </div>
                 </div>
 
-                <!-- Project 2: Weather & Flight Pipeline -->
                 <div class="project-card">
-                    <span class="project-label">Secondary Feature</span>
-                    <h3>Weather & Flight Data Engineering Pipeline</h3>
-                    <p class="project-problem">
-                        <strong>Problem:</strong> Analyzing flight delays and cancellations requires integrating 
-                        real-time weather data with historical flight records. Manual data collection is slow and 
-                        error-prone, preventing timely operational insights.
+                    <div class="project-header">
+                        <div>
+                            <h3>DBT Transformation Models</h3>
+                        </div>
+                        <span class="status-badge">Completed</span>
+                    </div>
+                    <p>
+                        Built production-grade DBT transformation models converting Oracle ERP datasets into 
+                        Snowflake tables. Standardized logic using Jinja templates for improved SQL reusability 
+                        and maintainability across finance, supply chain, and marketing analytics.
                     </p>
-
-                    <div class="project-highlights">
-                        <h4>Architecture & Pipeline Flow</h4>
-                        <ul>
-                            <li><strong>Ingestion:</strong> API polling for real-time weather and flight status data</li>
-                            <li><strong>Processing:</strong> Apache Spark for distributed data transformation and enrichment</li>
-                            <li><strong>Storage:</strong> Partitioned Parquet files in AWS S3 for optimized query performance</li>
-                            <li><strong>Analytics:</strong> dbt models creating aggregated metrics for BI dashboards</li>
-                        </ul>
-                    </div>
-
-                    <div class="metrics">
-                        <div class="metric">
-                            <div class="metric-value">500K+</div>
-                            <div class="metric-label">Flight Records/Month</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">2.5M+</div>
-                            <div class="metric-label">Weather Data Points</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value">3x</div>
-                            <div class="metric-label">Query Performance Gain</div>
-                        </div>
-                    </div>
-
                     <div class="tech-stack">
-                        <span class="tech-tag">Apache Airflow</span>
-                        <span class="tech-tag">Apache Spark</span>
-                        <span class="tech-tag">dbt</span>
-                        <span class="tech-tag">AWS S3</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Docker</span>
-                    </div>
-
-                    <div class="project-actions">
-                        <a href="https://github.com/ravager1204" target="_blank" class="btn btn-primary">View on GitHub</a>
-                        <a href="weather-flight-project.html" class="btn btn-secondary">Read Technical Details</a>
+                        <span class="tech-tag">DBT</span>
+                        <span class="tech-tag">Snowflake</span>
+                        <span class="tech-tag">Jinja</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Oracle</span>
                     </div>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 2rem;">
+            <div class="view-all-projects">
                 <a href="projects.html" class="btn btn-secondary">View All Projects →</a>
             </div>
         </div>
@@ -833,7 +735,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Get In Touch</h2>
-                <p>Open to data engineering and analytics opportunities</p>
+                <p>Let's discuss your next data project</p>
             </div>
 
             <div class="contact-grid">
@@ -864,26 +766,39 @@
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
                     <textarea placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="https://github.com/ravager1204" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/wan-ahmad-fahim-935248233/" target="_blank">LinkedIn</a>
-                <a href="Fahim_Munir_Zaki_Resume.pdf" download>Resume</a>
-            </div>
-            <p>© 2025 Fahim Munir. Data Engineer building reliable pipelines.</p>
-        </div>
-    </footer>
-
     <script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll progress
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        });
+
+        // Form handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
 
